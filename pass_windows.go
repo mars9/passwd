@@ -8,6 +8,10 @@ import (
 	"unsafe"
 )
 
+func init() {
+	passFunc = getPasswd
+}
+
 const ENABLE_ECHO_INPUT = 0x0004
 
 var (
@@ -55,7 +59,7 @@ func setConsoleMode(handle syscall.Handle, mode uint32) error {
 	return nil
 }
 
-func GetPasswd(prompt string) ([]byte, error) {
+func getPasswd(prompt string) ([]byte, error) {
 	if err := initHandle(); err != nil {
 		return nil, err
 	}

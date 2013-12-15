@@ -6,7 +6,11 @@ import (
 	"os"
 )
 
-func GetPasswd(prompt string) ([]byte, error) {
+func init() {
+	passFunc = getPasswd
+}
+
+func getPasswd(prompt string) ([]byte, error) {
 	cons, err := os.OpenFile("/dev/cons", os.O_RDWR, 0)
 	if err != nil {
 		return nil, err

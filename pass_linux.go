@@ -8,6 +8,10 @@ import (
 	"unsafe"
 )
 
+func init() {
+	passFunc = getPasswd
+}
+
 func ioctl(fd uintptr, cmd uintptr, data *syscall.Termios) error {
 	if _, _, err := syscall.Syscall(
 		syscall.SYS_IOCTL,
@@ -20,7 +24,7 @@ func ioctl(fd uintptr, cmd uintptr, data *syscall.Termios) error {
 	return nil
 }
 
-func GetPasswd(prompt string) ([]byte, error) {
+func getPasswd(prompt string) ([]byte, error) {
 	tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
 	if err != nil {
 		return nil, err
