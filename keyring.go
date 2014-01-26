@@ -12,6 +12,6 @@ type Keyring interface {
 }
 
 // NewKeyring returns the Keyring client available on the platform.
-// Currently only Factotum
-// http://plan9.bell-labs.com/magic/man2html/4/factotum is implemented.
+// Currently only supports Factotum
+// http://plan9.bell-labs.com/magic/man2html/4/factotum.
 func NewKeyring() Keyring { return new(factotum) }
