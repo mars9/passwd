@@ -12,7 +12,7 @@ func init() {
 	passFunc = getPasswd
 }
 
-const ENABLE_ECHO_INPUT = 0x0004
+const enableEchoInput = 0x0004
 
 var (
 	kernel32 syscall.Handle
@@ -76,7 +76,7 @@ func getPasswd(prompt string) ([]byte, error) {
 	}
 
 	nmode := omode
-	nmode &^= ENABLE_ECHO_INPUT
+	nmode &^= enableEchoInput
 	if err := setConsoleMode(fd, nmode); err != nil {
 		return nil, err
 	}
