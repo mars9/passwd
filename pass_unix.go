@@ -1,6 +1,6 @@
-package passwd
-
 // +build darwin linux
+
+package passwd
 
 import (
 	"bufio"
